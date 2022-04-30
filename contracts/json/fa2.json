@@ -1,0 +1,13 @@
+{
+  "version": "v1.0",
+  "name": "Mekatron K9",
+  "authors": [
+    "Kaiser K9 Omega (@KaiserK9Omega)",
+    "Mekaprime (mekaprime@mekatron.club)",
+    "vivekascoder (@vivekascoder)",
+    "CyberTogo (@CyberTogo_tez)"
+  ],
+  "homepage": "https://www.mekatron.club/",
+  "interfaces": ["TZIP-012", "TZIP-016", "TZIP-021"],
+  "views": []
+}
