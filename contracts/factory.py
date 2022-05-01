@@ -104,3 +104,7 @@ def test():
     ).run(sender=user1)
 
 
+sp.add_compilation_target('Factory', CrowdsaleFactory(
+    _admin = sp.address("tz1UxnruUqq2demYbAHsHkZ2VV95PV8MXVGq"),
+    _oracle = sp.address("KT1AdbYiPYb5hDuEuVrfxmFehtnBCXv4Np7r")
+))
