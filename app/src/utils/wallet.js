@@ -4,6 +4,7 @@ import config from "../config";
 import { OpKind } from "@taquito/taquito";
 import { char2Bytes } from "@taquito/utils";
 import { toast } from "react-toastify";
+import { fa2Of } from "./tzkt";
 
 const preferredNetwork = config.network;
 const options = {
@@ -108,6 +109,52 @@ export const fetchSaleStat = async () => {
     maxSupply: maxSupply.toNumber(),
     totalMinted: totalMinted.toNumber(),
   };
+};
+export const getUserAddress = async () => {
+  const wallet = new BeaconWallet(options);
+  const response = await checkIfWalletConnected(wallet);
+  if (response.success) {
+    const tezos = new TezosToolkit(rpcURL);
+    tezos.setWalletProvider(wallet);
+    const pkh = await tezos.wallet.pkh();
+    return {
+      success: true,
+      pkh: pkh,
+    };
+  } else {
+    return {
+      success: false,
+    };
+  }
+};
+
+export const connectCrowdsaleToFA2 = async (crowdsaleAddress) => {
+  console.log("AY");
+  const fa2 = await fa2Of(crowdsaleAddress);
+  console.log(fa2);
+  const wallet = new BeaconWallet(options);
+  const response = await checkIfWalletConnected(wallet);
+  if (response.success) {
+    const tezos = new TezosToolkit(rpcURL);
+    tezos.setWalletProvider(wallet);
+    const fa2Contract = await tezos.wallet.at(fa2);
+    const crowdsaleContract = await tezos.wallet.at(crowdsaleAddress);
+    const batch = await tezos.wallet.batch([
+      {
+        kind: OpKind.TRANSACTION,
+        ...crowdsaleContract.methods.registerFA2(fa2).toTransferParams(),
+      },
+      {
+        kind: OpKind.TRANSACTION,
+        ...fa2Contract.methods
+          .whitelist_address(crowdsaleAddress)
+          .toTransferParams(),
+      },
+    ]);
+    const batchOp = await batch.send();
+    console.log(batchOp.opHash);
+    await batchOp.confirmation();
+  }
 };
 
 export const createCrowdsale = async (

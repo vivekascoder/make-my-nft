@@ -2,6 +2,7 @@ import Navbar from "./components/Navbar";
 import CrowdsaleForm from "./components/CrowdsaleForm";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Crowdsles from "./components/Crowdsales";
 
 const App = () => {
   return (
@@ -17,19 +18,15 @@ const App = () => {
           backgroundSize: "100% auto",
         }}
       ></div>
-      <div>
-        <CrowdsaleForm />
-      </div>
-      {/* <div className="container mx-auto">
-        <div className="flex justify-center">
-          <h1 className="text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-blue-300 to-red-400">
-            Hello, world!
+      <CrowdsaleForm />
+      <div className="max-w-2xl mx-auto pb-10">
+        <div>
+          <h1 className="text-3xl font-bold text-gray-700 mb-4">
+            Your crowdsale contracts.
           </h1>
         </div>
-        <div className="mt-20 flex justify-center">
-          <ChangeName />
-        </div>
-      </div> */}
+        <Crowdsles />
+      </div>
     </div>
   );
 };

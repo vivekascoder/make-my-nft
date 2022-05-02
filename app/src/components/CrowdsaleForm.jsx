@@ -68,7 +68,7 @@ export default function CrowdsaleForm() {
                 "cursor-cell rounded-2xl px-6 py-2 font-semibold ring-4 ring-gray-800 ring-opacity-10 hover:bg-gray-50 focus:outline-none focus:ring-4 focus:ring-red-500 focus:ring-opacity-50 w-full border-none placeholder-gray-500",
             }}
             value={presaleStartTime}
-            onChange={(e) => setPresaleStartTime(e.target.value)}
+            onChange={(e) => setPresaleStartTime(e.toDate())}
           />
         </div>
         <div>
@@ -162,7 +162,7 @@ export default function CrowdsaleForm() {
                 "cursor-cell rounded-2xl px-6 py-2 font-semibold ring-4 ring-gray-800 ring-opacity-10 hover:bg-gray-50 focus:outline-none focus:ring-4 focus:ring-red-500 focus:ring-opacity-50 w-full border-none placeholder-gray-500",
             }}
             value={publicSaleStartTime}
-            onChange={(e) => setPublicSaleStartTime(e.target.value)}
+            onChange={(e) => setPublicSaleStartTime(e.toDate())}
           />
         </div>
         <div>
