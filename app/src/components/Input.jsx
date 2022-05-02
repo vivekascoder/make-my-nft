@@ -1,4 +1,11 @@
-export default function Input({ type, name, placeholder, value, onChange }) {
+export default function Input({
+  type,
+  name,
+  placeholder,
+  value,
+  onChange,
+  autoComplete,
+}) {
   return (
     <input
       type={type}
@@ -7,6 +14,7 @@ export default function Input({ type, name, placeholder, value, onChange }) {
       name={name}
       value={value}
       onChange={onChange}
+      autoComplete={autoComplete ? "on" : "off"}
     />
   );
 }

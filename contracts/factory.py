@@ -13,6 +13,11 @@ class CrowdsaleFactory(sp.Contract):
             protocolsShare = sp.nat(5),
             crowdsales = sp.map(l = {},tkey=sp.TAddress, tvalue=sp.TAddress),
             oracle = _oracle,
+            usersCrowdsales = sp.map(
+                l = {},
+                tkey=sp.TAddress,
+                tvalue=sp.TList(sp.TAddress)
+            )
         )
     
     @sp.entry_point
@@ -79,6 +84,10 @@ class CrowdsaleFactory(sp.Contract):
         newCrowdsaleAddress = sp.create_contract(contract=newCrowdsale)
 
         self.data.crowdsales[newCrowdsaleAddress] = newFA2Address
+        sp.if self.data.usersCrowdsales.contains(sp.sender):
+            self.data.usersCrowdsales[sp.sender].push(newCrowdsaleAddress)
+        sp.else:
+            self.data.usersCrowdsales[sp.sender] = [newCrowdsaleAddress,]
 
 @sp.add_test(name="Test Factory")
 def test():

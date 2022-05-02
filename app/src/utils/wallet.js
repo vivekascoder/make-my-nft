@@ -163,6 +163,7 @@ export const createCrowdsale = async (
         templateIPFSPath
       )
       .send({ amount: config.creationAmount, mutez: false });
+    console.log(op);
     await op.confirmation();
     toast("Crowdsale created!");
   }
