@@ -96,6 +96,7 @@ class CrowdSale(sp.Contract):
 
             # Stats and contract variables
             paused=sp.bool(False),
+            saleStarted = sp.bool(False),
             maxSupply=_maxSupply,
             mintIndex=sp.nat(0),
             nMinted=sp.nat(0),
@@ -183,6 +184,7 @@ class CrowdSale(sp.Contract):
             sp.mutez(0),
             contract
         )
+        self.data.saleStarted = sp.bool(True)
 
     @sp.entry_point
     def oracleCallback(self, params):
@@ -197,7 +199,11 @@ class CrowdSale(sp.Contract):
 
         # price = params.price
         price = sp.snd(sp.snd(params))
-        self.data.mintIndex = price % self.data.maxSupply
+        number = sp.local('number', price % self.data.maxSupply)
+        sp.if number.value == sp.nat(0):
+            number.value = sp.nat(1)
+        self.data.mintIndex = number.value
+
 
     @sp.entry_point
     def togglePause(self):
@@ -214,6 +220,10 @@ class CrowdSale(sp.Contract):
         we need to mint the tokens.
         """
         sp.set_type(params, sp.TRecord(address=sp.TAddress))
+
+        # Sale started ?
+        sp.verify(self.data.saleStarted == sp.bool(True), 'SALE_NOT_STARTED')
+
         # Verify wether there are NFTs to mint
         sp.verify(self.data.nMinted < self.data.maxSupply)
         metadataUri = Utils.Bytes.of_string(

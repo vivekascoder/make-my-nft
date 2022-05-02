@@ -1,7 +1,12 @@
 https://play.tailwindcss.com/SJmBcCiZsd
 
-[ ] Make a map (address -> list(address)) for keeping track of crowdsales created by a specific user in factory contract.
+[x] Make a map (address -> list(address)) for keeping track of crowdsales created by a specific user in factory contract.
 [ ] Make metadata more useful by taking info from the user.
+[ ] Take name and put it in the metadata or storage to fetch and show in users crowdsales.
+[ ] backdrop and progress bar.
+[ ] Validation for the form.
+[x] Added saleStarted in contract.
+[x] add validation in mintNFT
 
 ## ELI5 How to launch ?
 

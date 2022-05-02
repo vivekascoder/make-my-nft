@@ -1,5 +1,6 @@
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { useEffect, useState } from "react";
+import config from "../config";
 import { fetchUsersCrowdsales, isCrowdsaleConnected } from "../utils/tzkt";
 import { connectCrowdsaleToFA2, getUserAddress } from "../utils/wallet";
 import { WhiteButton } from "./Button";
@@ -9,14 +10,21 @@ const Card = ({ address, isConnected }) => {
     await connectCrowdsaleToFA2(address);
   };
   return (
-    <div className="relative h-40 w-60 overflow-hidden rounded-lg bg-red-500 shadow-md">
+    <div className="relative h-40 w-60 overflow-hidden rounded-lg bg-red-500 shadow-md mr-3 mt-4">
       <div className="absolute top-0 left-0 right-0 p-2 mt-5">
         <div>
-          <h1 className="text-center text-xl font-semibold text-white">
+          <a
+            className="block text-center text-xl font-semibold text-white hover:underline"
+            style={{ cursor: "cell" }}
+            href={`https://better-call.dev/${
+              config.network == "mainnet" ? "mainnet" : "hangzhou2net"
+            }/${address}`}
+            target="_blank"
+          >
             {address.slice(0, 4) +
               "..." +
               address.slice(address.length - 4, address.length)}
-          </h1>
+          </a>
         </div>
 
         {!isConnected && (
@@ -55,7 +63,7 @@ export default function Crowdsles() {
     fetchData();
   }, []);
   return (
-    <div className="flex flex-wrap items-center space-x-8">
+    <div className="flex flex-wrap items-center">
       {crowdsales.map((crowdsale, index) => (
         <Card
           address={crowdsale.address}

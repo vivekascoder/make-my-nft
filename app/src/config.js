@@ -1,7 +1,7 @@
 const config = {
   network: "hangzhounet",
   rpcURL: "https://hangzhounet.smartpy.io",
-  factory: "KT1Sbfdkti3EDHv2L3YVjYsxZUz1tS8e8rK7",
+  factory: "KT1DzUdDAXSkFayPx8z4bd5jBaq6gAhUwRus",
   creationAmount: 3,
 
   twitter: "https://twitter.com/vivekascoder",
