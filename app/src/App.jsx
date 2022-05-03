@@ -25,7 +25,9 @@ const App = () => {
             Your crowdsale contracts.
           </h1>
         </div>
-        <Crowdsles />
+        <div className="px-4">
+          <Crowdsles />
+        </div>
       </div>
     </div>
   );

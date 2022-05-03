@@ -36,6 +36,16 @@ export const isCrowdsaleConnected = async (crowdsale) => {
   }
 };
 
+export const isCrowdsaleStarted = async (crowdsale) => {
+  // Return true is sale started else false.
+  const storage = await fetchStorage(crowdsale);
+  if (storage.saleStarted) {
+    return true;
+  } else {
+    return false;
+  }
+};
+
 export const fa2Of = async (crowdsale) => {
   // return fa2 address corresponding to a crowdsale contract address.
   const storage = await fetchStorage(config.factory);

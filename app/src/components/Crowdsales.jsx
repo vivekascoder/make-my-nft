@@ -1,16 +1,20 @@
-import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import { faCartFlatbed, faPlus } from "@fortawesome/free-solid-svg-icons";
 import { useEffect, useState } from "react";
 import config from "../config";
-import { fetchUsersCrowdsales, isCrowdsaleConnected } from "../utils/tzkt";
+import {
+  fetchUsersCrowdsales,
+  isCrowdsaleConnected,
+  isCrowdsaleStarted,
+} from "../utils/tzkt";
 import { connectCrowdsaleToFA2, getUserAddress } from "../utils/wallet";
 import { WhiteButton } from "./Button";
 
-const Card = ({ address, isConnected }) => {
+const Card = ({ address, isConnected, isStarted }) => {
   const handleConnect = async (address) => {
     await connectCrowdsaleToFA2(address);
   };
   return (
-    <div className="relative h-40 w-60 overflow-hidden rounded-lg bg-red-500 shadow-md mr-3 mt-4">
+    <div className="relative h-48 w-60 overflow-hidden rounded-lg bg-red-500 shadow-md mr-3 mt-4">
       <div className="absolute top-0 left-0 right-0 p-2 mt-5">
         <div>
           <a
@@ -27,7 +31,7 @@ const Card = ({ address, isConnected }) => {
           </a>
         </div>
 
-        {!isConnected && (
+        {!isStarted && (
           <div className="flex justify-center mt-4">
             <WhiteButton
               onClick={() => {
@@ -35,6 +39,17 @@ const Card = ({ address, isConnected }) => {
               }}
               faIcon={faPlus}
               text="Connect"
+            />
+          </div>
+        )}
+        {!isConnected && (
+          <div className="flex justify-center mt-4">
+            <WhiteButton
+              onClick={() => {
+                handleConnect(address);
+              }}
+              faIcon={faCartFlatbed}
+              text="Start Sale"
             />
           </div>
         )}
@@ -52,10 +67,11 @@ export default function Crowdsles() {
       let c = [];
       for (let addr of data) {
         let isC = await isCrowdsaleConnected(addr);
-        console.log(isC, addr);
+        let isStarted = await isCrowdsaleStarted(addr);
         c.push({
           address: addr,
           isConnected: isC,
+          isStarted: isStarted,
         });
       }
       setCrowdsales(c);
@@ -68,6 +84,7 @@ export default function Crowdsles() {
         <Card
           address={crowdsale.address}
           isConnected={crowdsale.isConnected}
+          isStarted={crowdsale.isStarted}
           key={index}
         />
       ))}

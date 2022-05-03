@@ -4,7 +4,7 @@ export default function Button({ onClick, faIcon, text }) {
   return (
     <button
       onClick={onClick}
-      className=" rounded-2xl border-2 border-red-500 bg-red-500 px-6 py-2 font-semibold text-white hover:bg-white hover:text-red-500"
+      className="text-sm rounded-2xl border-2 border-red-500 bg-red-500 px-6 py-2 font-semibold text-white hover:bg-white hover:text-red-500"
       style={{ cursor: "cell" }}
     >
       {faIcon && (

@@ -23,8 +23,6 @@ const connectWallet = async () => {
   const wallet = new BeaconWallet(options);
 
   let account = await wallet.client.getActiveAccount();
-  console.log(config);
-  console.log("Hello Connecting wallet.");
 
   if (!account) {
     await wallet.requestPermissions({
@@ -48,7 +46,6 @@ const checkIfWalletConnected = async (wallet) => {
     if (!activeAccount) {
       await connectWallet();
     }
-
     return {
       success: true,
     };
@@ -129,9 +126,7 @@ export const getUserAddress = async () => {
 };
 
 export const connectCrowdsaleToFA2 = async (crowdsaleAddress) => {
-  console.log("AY");
   const fa2 = await fa2Of(crowdsaleAddress);
-  console.log(fa2);
   const wallet = new BeaconWallet(options);
   const response = await checkIfWalletConnected(wallet);
   if (response.success) {
@@ -154,6 +149,20 @@ export const connectCrowdsaleToFA2 = async (crowdsaleAddress) => {
     const batchOp = await batch.send();
     console.log(batchOp.opHash);
     await batchOp.confirmation();
+  }
+};
+
+export const startSale = async (crowdsale) => {
+  const wallet = new BeaconWallet(options);
+  const response = await checkIfWalletConnected(wallet);
+  if (response.success) {
+    const tezos = new TezosToolkit(rpcURL);
+    tezos.setWalletProvider(wallet);
+
+    const contract = await tezos.wallet.at(crowdsale);
+    const op = contract.methods.startSale().send();
+    console.log(op.opHash);
+    await op.confirmation();
   }
 };
 

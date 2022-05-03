@@ -1,4 +1,4 @@
-https://play.tailwindcss.com/SJmBcCiZsd
+Component Designs: https://play.tailwindcss.com/RjBmMx48Ol
 
 [x] Make a map (address -> list(address)) for keeping track of crowdsales created by a specific user in factory contract.
 [ ] Make metadata more useful by taking info from the user.
@@ -7,6 +7,7 @@ https://play.tailwindcss.com/SJmBcCiZsd
 [ ] Validation for the form.
 [x] Added saleStarted in contract.
 [x] add validation in mintNFT
+[ ] Make `<Input />` a full component that handles label, validation etc, to directly use it and make form validation.
 
 ## ELI5 How to launch ?
 

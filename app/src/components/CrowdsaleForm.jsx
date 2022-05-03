@@ -23,10 +23,10 @@ export default function CrowdsaleForm() {
       parseInt(maxSupply),
       presaleEndTime.toISOString(),
       parseInt(presaleMintLimit),
-      parseInt(presalePrice),
+      parseInt(parseFloat(presalePrice * 10 ** 6)),
       presaleStartTime.toISOString(),
       parseInt(publicsaleMintLimit),
-      parseInt(publicsalePrice),
+      parseInt(parseFloat(publicsalePrice * 10 ** 6)),
       publicSaleStartTime.toISOString(),
       templatePath
     );
@@ -76,7 +76,7 @@ export default function CrowdsaleForm() {
             htmlFor="maxSupply"
             className="font-semibold text-sm text-gray-500 ml-2"
           >
-            Presale End Time {presaleEndTime.toISOString()}
+            Presale End Time
           </label>
           <Datetime
             inputProps={{
@@ -93,7 +93,7 @@ export default function CrowdsaleForm() {
             htmlFor="maxSupply"
             className="font-semibold text-sm text-gray-500 ml-2"
           >
-            Presale Price
+            Presale Price (XTZ)
           </label>
           <Input
             type="text"
@@ -108,7 +108,7 @@ export default function CrowdsaleForm() {
             htmlFor="maxSupply"
             className="font-semibold text-sm text-gray-500 ml-2"
           >
-            Public Sale Price
+            Public Sale Price (XTZ)
           </label>
           <Input
             type="text"

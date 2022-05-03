@@ -11,6 +11,7 @@ class CrowdsaleFactory(sp.Contract):
         self.init(
             admin = _admin,
             protocolsShare = sp.nat(5),
+            creationAmount = sp.tez(3),
             crowdsales = sp.map(l = {},tkey=sp.TAddress, tvalue=sp.TAddress),
             oracle = _oracle,
             usersCrowdsales = sp.map(
@@ -24,6 +25,12 @@ class CrowdsaleFactory(sp.Contract):
     def changeProtocolsShare(self, _share: sp.TNat):
         sp.if (_share >= 0) & (_share <= 50):
             self.data.protocolsShare = _share
+    
+    @sp.entry_point
+    def withdrawGeneratedRevenue(self):
+        # Admin can remove the xtzs from the contract.
+        sp.verify(sp.sender == self.data.admin, 'USER_NOT_ADMIN')
+        sp.send(self.data.admin, sp.balance, "CANT_SEND_TO_ADMIN")
     
     @sp.entry_point
     def createCrowdsale(
@@ -43,6 +50,8 @@ class CrowdsaleFactory(sp.Contract):
         Create new Crowdsale + FA2 contract with the information given
         and store the info.
         """
+
+        sp.verify(sp.amount == self.data.creationAmount, "NOT_CORRECT_AMOUNT")
         
         crowdsaleAdmin = sp.sender
         crowdsaleDeveloper = self.data.admin 
@@ -110,7 +119,7 @@ def test():
         _publicsalePrice=sp.tez(5),
         _publicsaleMintLimit=sp.nat(3),
         _metadata = sp.utils.bytes_of_string(metadata),
-    ).run(sender=user1)
+    ).run(sender=user1, amount=sp.tez(3))
 
 
 sp.add_compilation_target('Factory', CrowdsaleFactory(

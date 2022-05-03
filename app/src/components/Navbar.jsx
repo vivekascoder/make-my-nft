@@ -9,29 +9,7 @@ import { faWallet } from "@fortawesome/free-solid-svg-icons";
 import { faTwitter, faDiscord } from "@fortawesome/free-brands-svg-icons";
 import { faImagePortrait } from "@fortawesome/free-solid-svg-icons";
 import config from "../config";
-import { TezButton } from "./TezButton";
 import Button, { ButtonLink } from "./Button";
-
-const TezLink = ({ faIcon, href, text, children, ...extra }) => {
-  return (
-    <div className="relative group inline-block ml-4 text-white">
-      <div
-        className={`bg-blue-300 transform w-full h-full top-2 -left-2 absolute transition-all`}
-      ></div>
-      <a
-        href={href}
-        target={"_blank"}
-        rel={"noreferrer"}
-        className={`bg-blue-500 inline-block ${extra?.padding} ${extra?.textSize} rounded-sm relative group-active:-left-2 group-active:top-2 transition-all hover:bg-blue-600`}
-      >
-        {faIcon && (
-          <FontAwesomeIcon icon={faIcon} className={`${text && "mr-2"}`} />
-        )}
-        {text && <span>{text}</span>}
-      </a>
-    </div>
-  );
-};
 
 export default function Navbar() {
   const [wallet, setWallet] = useState(null);
@@ -64,7 +42,7 @@ export default function Navbar() {
         <div className="flex-1 space-x-4 flex items-center">
           <a
             href="#!"
-            className="font-bold text-gray-900 pr-2 text-xl sm:text-2xl"
+            className="font-bold text-gray-900 pr-2 text-lg sm:text-2xl"
           >
             <FontAwesomeIcon
               icon={faImagePortrait}
@@ -76,9 +54,11 @@ export default function Navbar() {
           </a>
         </div>
 
-        <div className="flex items-center sm:space-x-4">
-          <ButtonLink href={config.twitter} faIcon={faTwitter} />
-          <ButtonLink faIcon={faDiscord} href={config.discord} />
+        <div className="flex items-center sm:space-x-4 space-x-2">
+          <div className="sm:space-x-4 sm:block hidden">
+            <ButtonLink href={config.twitter} faIcon={faTwitter} />
+            <ButtonLink faIcon={faDiscord} href={config.discord} />
+          </div>
           <Button
             onClick={wallet ? handleDisconnectWallet : handleConnectWallet}
             faIcon={faWallet}
