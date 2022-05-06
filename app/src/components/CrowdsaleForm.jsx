@@ -4,8 +4,10 @@ import Datetime from "react-datetime";
 import "react-datetime/css/react-datetime.css";
 import { useState } from "react";
 import { createCrowdsale } from "../utils/wallet";
+import { useLoader } from "../hooks/useLoader";
 
 export default function CrowdsaleForm() {
+  const { toggleShow } = useLoader();
   const [maxSupply, setMaxSupply] = useState(1);
   const [presaleStartTime, setPresaleStartTime] = useState(new Date());
   const [presaleEndTime, setPresaleEndTime] = useState(new Date());
@@ -17,9 +19,9 @@ export default function CrowdsaleForm() {
   const [publicsaleMintLimit, setPublicsaleMintLimit] = useState(1);
 
   const handleFormSubmit = async (e) => {
-    console.log();
     e.preventDefault();
-    await createCrowdsale(
+    toggleShow();
+    const op = await createCrowdsale(
       parseInt(maxSupply),
       presaleEndTime.toISOString(),
       parseInt(presaleMintLimit),
@@ -30,13 +32,15 @@ export default function CrowdsaleForm() {
       publicSaleStartTime.toISOString(),
       templatePath
     );
+    toggleShow();
+    op.confirmation();
   };
   return (
     <div className="bg-white rounded-lg p-6 border-2 border-gray-200 max-w-xl transform -translate-y-40 mx-auto">
       <form onSubmit={handleFormSubmit} className="space-y-4">
         <div>
           <h1 className="text-4xl font-bold text-center mb-4">
-            Create <span className="text-red-500">Crowdsle</span>
+            Create <span className="text-red-500">Crowdsale</span>
           </h1>
         </div>
         <div>

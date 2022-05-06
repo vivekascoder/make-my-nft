@@ -1,14 +1,16 @@
 import Navbar from "./components/Navbar";
 import CrowdsaleForm from "./components/CrowdsaleForm";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import Crowdsles from "./components/Crowdsales";
+import Loader from "./components/Loader";
+import toast, { Toaster } from "react-hot-toast";
+const notify = () => toast("Here is your toast.");
 
 const App = () => {
   return (
     <div className="min-h-screen" style={{ background: "#f4f4f4" }}>
       <Navbar />
-      <ToastContainer />
+      <Loader />
+      <Toaster />
 
       <div
         className="h-96 w-full"

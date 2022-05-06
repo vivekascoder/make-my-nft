@@ -3,7 +3,6 @@ import { BeaconWallet } from "@taquito/beacon-wallet";
 import config from "../config";
 import { OpKind } from "@taquito/taquito";
 import { char2Bytes } from "@taquito/utils";
-import { toast } from "react-toastify";
 import { fa2Of } from "./tzkt";
 
 const preferredNetwork = config.network;
@@ -148,7 +147,7 @@ export const connectCrowdsaleToFA2 = async (crowdsaleAddress) => {
     ]);
     const batchOp = await batch.send();
     console.log(batchOp.opHash);
-    await batchOp.confirmation();
+    return batchOp;
   }
 };
 
@@ -162,7 +161,7 @@ export const startSale = async (crowdsale) => {
     const contract = await tezos.wallet.at(crowdsale);
     const op = contract.methods.startSale().send();
     console.log(op.opHash);
-    await op.confirmation();
+    return op;
   }
 };
 
@@ -220,8 +219,7 @@ export const createCrowdsale = async (
       )
       .send({ amount: config.creationAmount, mutez: false });
     console.log(op);
-    await op.confirmation();
-    toast("Crowdsale created!");
+    return op;
   }
 };
 
