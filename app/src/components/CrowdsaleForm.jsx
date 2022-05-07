@@ -18,10 +18,15 @@ export default function CrowdsaleForm() {
   const [presaleMintLimit, setPresaleMintLimit] = useState(1);
   const [publicsaleMintLimit, setPublicsaleMintLimit] = useState(1);
 
+  const [name, setName] = useState("");
+  const [description, setDescription] = useState("");
+
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     toggleShow();
     const op = await createCrowdsale(
+      name,
+      description,
       parseInt(maxSupply),
       presaleEndTime.toISOString(),
       parseInt(presaleMintLimit),
@@ -42,6 +47,37 @@ export default function CrowdsaleForm() {
           <h1 className="text-4xl font-bold text-center mb-4">
             Create <span className="text-red-500">Crowdsale</span>
           </h1>
+        </div>
+        <div>
+          <label
+            htmlFor="name"
+            className="font-semibold text-sm text-gray-500 ml-2"
+          >
+            Name of collection
+          </label>
+          <Input
+            type="text"
+            placeholder="Collection's name"
+            name="name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+        </div>
+        <div>
+          <label
+            htmlFor="description"
+            className="font-semibold text-sm text-gray-500 ml-2"
+          >
+            Description for collection
+          </label>
+          <textarea
+            type="text"
+            placeholder="Collection's Description"
+            name="description"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            className="cursor-cell rounded-2xl px-6 py-2 font-semibold ring-4 ring-gray-800 ring-opacity-10 hover:bg-gray-50 focus:outline-none focus:ring-4 focus:ring-red-500 focus:ring-opacity-50 w-full border-none placeholder-gray-500"
+          ></textarea>
         </div>
         <div>
           <label

@@ -10,6 +10,7 @@ import { faTwitter, faDiscord } from "@fortawesome/free-brands-svg-icons";
 import { faImagePortrait } from "@fortawesome/free-solid-svg-icons";
 import config from "../config";
 import Button, { ButtonLink } from "./Button";
+import { Link } from "react-router-dom";
 
 export default function Navbar() {
   const [wallet, setWallet] = useState(null);
@@ -40,9 +41,9 @@ export default function Navbar() {
     >
       <div className="flex items-center px-4 sm:px-10 justify-between h-20">
         <div className="flex-1 space-x-4 flex items-center">
-          <a
-            href="#!"
+          <Link
             className="font-bold text-gray-900 pr-2 text-lg sm:text-2xl"
+            to="/"
           >
             <FontAwesomeIcon
               icon={faImagePortrait}
@@ -51,7 +52,7 @@ export default function Navbar() {
             <span>
               Make My <span className="text-red-500">NFT</span>
             </span>
-          </a>
+          </Link>
         </div>
 
         <div className="flex items-center sm:space-x-4 space-x-2">

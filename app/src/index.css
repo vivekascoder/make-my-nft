@@ -74,4 +74,18 @@
     }
   }
   
+.slider {
+  @apply appearance-none;
+  @apply cursor-pointer;
+  @apply h-2 rounded-none bg-gray-200;
+}
+.slider::-webkit-slider-thumb {
+  @apply appearance-none;
+  /* @apply w-6 h-6 bg-purple-500; */
+  @apply w-6 h-6 bg-red-500;
+}
+.slider::-webkit-slider-thumb:hover {
+  /* @apply ring-4 ring-opacity-50 ring-purple-500; */
+  @apply ring-4 ring-opacity-50 ring-red-500;
+}
 @tailwind utilities;

@@ -2,6 +2,7 @@
  * Contains code to interact with the tzkt api.
  */
 
+import { bytes2Char } from "@taquito/utils";
 import axios from "axios";
 import config from "../config";
 
@@ -53,4 +54,37 @@ export const fa2Of = async (crowdsale) => {
     return null;
   }
   return storage.crowdsales[crowdsale];
+};
+
+export const validateContractAddress = (addr) => {
+  if (!addr.startsWith("KT1")) return false;
+  if (addr.length < 36) return false;
+  return true;
+};
+
+export const getContractMetadata = async (addr) => {
+  const storage = await fetchStorage(addr);
+  const metadataBigMapId = storage.metadata;
+  const content = await axios.get(
+    `${currentEndpoint}/v1/bigmaps/${metadataBigMapId}/keys?limit=10000`
+  );
+
+  const obj = content.data.find((o) => o.key == "content");
+  if (!obj) {
+    return false;
+  }
+  return bytes2Char(obj.value);
+};
+
+export const fetchCrowdsaleConfig = async (addr) => {
+  const storage = await fetchStorage(addr);
+  const config = {
+    publicSaleTime: new Date(storage.publicsaleStart),
+    publicSalePrice: parseInt(storage.publicsalePrice) / 10 ** 6,
+    price: parseInt(storage.presalePrice) / 10 ** 6,
+    publicsaleLimit: parseInt(storage.publicsaleMintLimit),
+    presaleLimit: parseInt(storage.presaleMintLimit),
+  };
+  console.log(config.publicsaleLimit, config.presaleLimit);
+  return config;
 };

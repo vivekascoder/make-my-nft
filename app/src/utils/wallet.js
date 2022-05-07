@@ -56,7 +56,7 @@ const checkIfWalletConnected = async (wallet) => {
   }
 };
 
-export const mintNFT = async (quantity) => {
+export const mintNFT = async (quantity, address, config) => {
   const now = new Date();
   const delta = now - config.publicSaleTime > 0;
   // const delta = true;
@@ -67,7 +67,7 @@ export const mintNFT = async (quantity) => {
     const tezos = new TezosToolkit(rpcURL);
     tezos.setWalletProvider(wallet);
 
-    const contract = await tezos.wallet.at(config.contractAddress);
+    const contract = await tezos.wallet.at(address);
 
     let microTransactions = [];
     for (let i = 0; i < quantity; i++) {
@@ -95,9 +95,9 @@ export const mintNFT = async (quantity) => {
   }
 };
 
-export const fetchSaleStat = async () => {
+export const fetchSaleStat = async (addr) => {
   const tezos = new TezosToolkit(rpcURL);
-  const contract = await tezos.contract.at(config.contractAddress);
+  const contract = await tezos.contract.at(addr);
   const storage = await contract.storage();
   const maxSupply = storage.maxSupply;
   const totalMinted = storage.nMinted;
@@ -166,6 +166,8 @@ export const startSale = async (crowdsale) => {
 };
 
 export const createCrowdsale = async (
+  name,
+  description,
   maxSupply,
   presaleEnd,
   presaleMintLimit,
@@ -191,11 +193,10 @@ export const createCrowdsale = async (
    */
   const metadata = char2Bytes(
     JSON.stringify({
-      name: "Mekatron Crowdsale Contract",
-      description:
-        "Mekatron: We are the Mekatrons, A series of Hand Designed K9 NFTs used for battle. Collect them and be ready for the battle of the Mekatrons.",
+      name: name,
+      description: description,
       version: "1.0.0",
-      homepage: "https://mekatron.club",
+      homepage: `https://makemynft.vivek.biz/`,
     })
   );
   const wallet = new BeaconWallet(options);
