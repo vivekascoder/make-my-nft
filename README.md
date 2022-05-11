@@ -29,3 +29,7 @@ https://encodeclub.notion.site/How-to-Submit-f6c355c2d1a241029041ab99868b2377
 [ ] Deploy the artwork on pinata.cloud
 [ ] Generate the crowdsale contract from make my nft.
 [ ] Create the website or just use make my nft (coming soon).
+
+## Some Links
+
+- QmTxznUBMCF9xtXNSm6xmgTXs9frdKg5cu43Bt32gdqdC6
