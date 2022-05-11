@@ -88,3 +88,8 @@ export const fetchCrowdsaleConfig = async (addr) => {
   console.log(config.publicsaleLimit, config.presaleLimit);
   return config;
 };
+
+export const fetchAllCrowdsale = async () => {
+  const storage = await fetchStorage(config.factory);
+  return storage.crowdsaleNames;
+}

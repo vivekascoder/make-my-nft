@@ -14,16 +14,16 @@ export default function Button({ onClick, faIcon, text }) {
     </button>
   );
 }
-export function WhiteButton({ onClick, faIcon, text, size }) {
+export function WhiteButton({ onClick, faIcon, text, size, disabled }) {
   const getClass = () => {
     if (size == "sm") {
-      return "cursor-cell rounded-xl border-2 border-gray-200 bg-white px-4 py-2 text-xs font-semibold text-gray-900 hover:bg-gray-100";
+      return `cursor-cell rounded-xl border-2 border-gray-200 ${disabled ? 'bg-gray-300' : 'bg-white'} px-4 py-2 text-xs font-semibold text-gray-900 hover:bg-gray-100`;
     } else {
-      return "cursor-cell rounded-2xl border-2 border-gray-200 bg-white px-6 py-2 text-sm font-semibold text-gray-900 hover:bg-gray-100";
+      return `cursor-cell rounded-2xl border-2 border-gray-200 ${disabled ? 'bg-gray-300' : 'bg-white'} px-6 py-2 text-sm font-semibold text-gray-900 hover:bg-gray-100`;
     }
   };
   return (
-    <button onClick={onClick} className={getClass()} style={{ cursor: "cell" }}>
+    <button onClick={onClick} className={getClass()} style={{ cursor: `${disabled ? 'no-drop' : 'cell'}` }} disabled={disabled}>
       {faIcon && (
         <FontAwesomeIcon
           icon={faIcon}

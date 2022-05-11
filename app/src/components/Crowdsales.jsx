@@ -31,11 +31,10 @@ const Card = ({ address, isConnected, isStarted }) => {
     await op.confirmation();
   };
   return (
-    <div className="relative h-48 w-60 overflow-hidden rounded-lg bg-red-500 shadow-md mr-3 mt-4">
-      <div className="absolute top-0 left-0 right-0 p-2 mt-5">
+    <div className="relative overflow-hidden rounded-lg bg-red-500 shadow-md mr-3 mt-4 p-6">
         <div>
           <a
-            className="block text-center text-xl font-semibold text-white hover:underline"
+            className="block text-xl font-semibold text-white hover:underline"
             style={{ cursor: "cell" }}
             href={`https://better-call.dev/${
               config.network == "mainnet" ? "mainnet" : "hangzhou2net"
@@ -47,30 +46,26 @@ const Card = ({ address, isConnected, isStarted }) => {
               address.slice(address.length - 4, address.length)}
           </a>
         </div>
-        <div className="flex mt-4">
-          {!isConnected && (
+        <div className="flex mt-4 space-x-6">
+          
             <WhiteButton
               onClick={() => {
                 handleConnect(address);
               }}
               faIcon={faPlus}
               text="Connect"
+              disabled={isConnected}
             />
-          )}
-        </div>
-        <div className="flex mt-4">
-          {!isStarted && (
             <WhiteButton
               onClick={() => {
                 handleStartSale(address);
               }}
               faIcon={faCartFlatbed}
               text="Start Sale"
+              disabled={isStarted}
             />
-          )}
         </div>
       </div>
-    </div>
   );
 };
 
@@ -96,7 +91,7 @@ export default function Crowdsles() {
     fetchData();
   }, []);
   return (
-    <div className="flex flex-wrap items-center">
+    <div className="">
       {crowdsales.map((crowdsale, index) => (
         <Card
           address={crowdsale.address}

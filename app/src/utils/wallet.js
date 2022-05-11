@@ -209,6 +209,7 @@ export const createCrowdsale = async (
       .createCrowdsale(
         maxSupply,
         metadata,
+        name,
         presaleEnd,
         presaleMintLimit,
         presalePrice,

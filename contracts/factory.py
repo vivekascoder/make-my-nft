@@ -14,6 +14,7 @@ class CrowdsaleFactory(sp.Contract):
             creationAmount = sp.tez(3),
             crowdsales = sp.map(l = {},tkey=sp.TAddress, tvalue=sp.TAddress),
             oracle = _oracle,
+            crowdsaleNames = sp.map(l={}, tkey=sp.TAddress, tvalue=sp.TString),
             usersCrowdsales = sp.map(
                 l = {},
                 tkey=sp.TAddress,
@@ -45,6 +46,7 @@ class CrowdsaleFactory(sp.Contract):
         _publicsalePrice: sp.TMutez,
         _publicsaleMintLimit: sp.TNat,
         _metadata: sp.TBytes,
+        _name: sp.TString,
         ):
         """
         Create new Crowdsale + FA2 contract with the information given
@@ -93,6 +95,7 @@ class CrowdsaleFactory(sp.Contract):
         newCrowdsaleAddress = sp.create_contract(contract=newCrowdsale)
 
         self.data.crowdsales[newCrowdsaleAddress] = newFA2Address
+        self.data.crowdsaleNames[newCrowdsaleAddress] = _name
         sp.if self.data.usersCrowdsales.contains(sp.sender):
             self.data.usersCrowdsales[sp.sender].push(newCrowdsaleAddress)
         sp.else:
@@ -119,6 +122,7 @@ def test():
         _publicsalePrice=sp.tez(5),
         _publicsaleMintLimit=sp.nat(3),
         _metadata = sp.utils.bytes_of_string(metadata),
+        _name="Hel"
     ).run(sender=user1, amount=sp.tez(3))
 
 

@@ -4,6 +4,7 @@ import { Toaster } from "react-hot-toast";
 import { Route, Routes } from "react-router-dom";
 import Crowdsale from "./views/Crowdsale";
 import Home from "./views/Home";
+import SalesList from "./views/SalesList";
 
 const App = () => {
   return (
@@ -14,6 +15,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/crowdsales/:crowdsaleAddress" element={<Crowdsale />} />
+        <Route path="/all" element={<SalesList />} /> 
       </Routes>
     </div>
   );
