@@ -58,7 +58,7 @@ export const MintNFT = ({ addr }) => {
               value={sliderValue}
               onChange={(e) => setSliderValue(e.target.value)}
               min={1}
-              max={delta ? config.publicsaleLimit : config.presaleLimit}
+              max={delta ? config.presaleLimit : config.publicsaleLimit}
             />
           </div>
 
@@ -76,7 +76,7 @@ export const MintNFT = ({ addr }) => {
               <span className="text-2xl font-semibold">{sliderValue} NFT</span>{" "}
               for{" "}
               <span className="text-2xl font-semibold">
-                {sliderValue * (delta ? config.publicSalePrice : config.price)}{" "}
+                {sliderValue * (delta ? config.price : config.publicSalePrice)}{" "}
                 ꜩ
               </span>
             </span>
