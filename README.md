@@ -1,27 +1,36 @@
+# Make My NFT
+
+## What is Make My NFT ?
+
+Make my NFT
+
+In the tezos ecosystem if you are planning to launch your NFT collection you need to do a lot of manual work which involve recruiting smart contract developer for coding contracts for primary sale, web developer for coding custom website to mint NFTs and not to mention building community around it. It gets even more difficult if you are just an artist and want a way to do it quickly without writing code because there are no open-source crowdsale contracts out there.
+
+I get a lot of DMs on twitter about the same, so I created make my NFT, a simple one stop solution to launch your NFT collection even if you don't know how to code just by a few clicks.
+
+You just need to go the website, fill the form to get your crowdsale + FA2 contract up and running and then you can start the sale and after that you can to minting page for your crowdsale contract and that's the place where you or anyone with this link can mint an NFT from your collection.
+
+With the help of Make My NFT we've solved all three problems for artist.
+
+1. Coding smart contract: Now you can just fill a form and you've your contracts up and running in matter of minutes.
+2. Coding website: We offer minting page for every single collection which allows anyone to easily get the NFT from that collection.
+3. Community Building: Since we offer a central platform for all NFT collection people will get audience directly from the users of the website as now users have a single platform to look for new NFT collection projects on tezos.
+
+## If applicable, what are the goals for your project after the hackathon? (optional)
+
+So far in this limited time I've just built the MVP, I want to make it super user friendly and a real product that provides values and launch it on mainnet.
+
+1. I want to work on improving the UI and UX.
+2. I will improve minting page, introduce more things specific to the collection like demo artwork, social links etc.
+3. Auditing the smart contracts as I want to launch it on mainnet.
+
+## UI Components Design
+
 Component Designs: https://play.tailwindcss.com/RjBmMx48Ol
 
 ## Where to submit ?
 
 https://encodeclub.notion.site/How-to-Submit-f6c355c2d1a241029041ab99868b2377
-
-## Things to do in the app.
-
-[x] Make a map (address -> list(address)) for keeping track of crowdsales created by a specific user in factory contract.
-[ ] Make metadata more useful by taking info from the user.
-[ ] Take name and put it in the metadata or storage to fetch and show in users crowdsales.
-[ ] backdrop and loading bar.
-[ ] Validation for the form.
-[x] Added saleStarted in contract.
-[x] add validation in mintNFT
-[ ] Make `<Input />` a full component that handles label, validation etc, to directly use it and make form validation.
-[x] Fix typo on the website.
-[ ] Live stream while making separate page for each contract, take more info in the form for showing in the webpage, etc.
-
-### Post MVP features
-
-[ ] User's can directly ming their NFTs from our platform.
-[ ] Creating a whitelabel open source minting website so that users can create their websites on top of it.
-[ ] Creating dashboard page corresponds to each crowdsale contract to control all the entry points from it witout using better-call.dev.
 
 ## ELI5 How to launch ?
 
