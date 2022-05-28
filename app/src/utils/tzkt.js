@@ -9,6 +9,7 @@ import config from "../config";
 const endpoint = {
   hangzhounet: "https://api.hangzhounet.tzkt.io",
   mainnet: "https://api.tzkt.io",
+  ithacanet: "https://api.ithacanet.tzkt.io",
 };
 const currentEndpoint = endpoint[config.network];
 
@@ -92,4 +93,4 @@ export const fetchCrowdsaleConfig = async (addr) => {
 export const fetchAllCrowdsale = async () => {
   const storage = await fetchStorage(config.factory);
   return storage.crowdsaleNames;
-}
+};

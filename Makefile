@@ -15,6 +15,6 @@ deploy_factory:
 	$(SP) originate-contract \
 		--code ./output/Factory/step_000_cont_0_contract.tz \
 		--storage ./output/Factory/step_000_cont_0_storage.tz \
-		--rpc https://hangzhounet.smartpy.io
+		--rpc https://ithacanet.smartpy.io
 	
 	@echo "> Deployed contracts."
