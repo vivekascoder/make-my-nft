@@ -106,6 +106,7 @@ def test():
     scenario = sp.test_scenario()
     admin = sp.address("tz1-admin")
     user1 = sp.address("tz1-user1")
+    user2 = sp.address("tz1-user2")
     oracle = sp.address("tz1-oracle")
 
     factory = CrowdsaleFactory(_admin=admin, _oracle=oracle)
@@ -123,7 +124,7 @@ def test():
         _publicsaleMintLimit=sp.nat(3),
         _metadata = sp.utils.bytes_of_string(metadata),
         _name="Hel"
-    ).run(sender=user1, amount=sp.tez(3))
+    ).run(sender=user2, amount=sp.tez(3))
 
 
 sp.add_compilation_target('Factory', CrowdsaleFactory(

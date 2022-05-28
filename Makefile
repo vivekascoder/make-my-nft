@@ -7,6 +7,10 @@ test_factory:
 	@echo "> Runnning test for Crowdsale Factory."
 	$(SP) test ./contracts/factory.py ./output --html
 
+open_log:
+	@echo "> Opening log."
+	live-server ./output/Test_Factory/log.html
+
 deploy_factory:
 	@echo "> Compiling Crowdsale Factory."
 	$(SP) compile ./contracts/factory.py ./output --html
