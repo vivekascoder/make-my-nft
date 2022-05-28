@@ -67,7 +67,7 @@ class CrowdsaleFactory(sp.Contract):
                 non_fungible = True,
                 assume_consecutive_token_ids=False
             ),
-            admin = self.data.admin,
+            admin = sp.sender,
             metadata = sp.big_map({
                 "": sp.utils.bytes_of_string("tezos-storage:content"),
                 "content": sp.utils.bytes_of_string("""{"name": "NFT FA2"}""")
