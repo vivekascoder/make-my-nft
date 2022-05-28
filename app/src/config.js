@@ -4,7 +4,7 @@ const config = {
   rpcURL: "https://ithacanet.smartpy.io",
 
   // Factory contract address.
-  factory: "KT1T5vSGnfXUQtADQdApLkHUBAe1Xz8gKqda",
+  factory: "KT1CjgGyrDKEMt7e13i4W5EnsQbT3gPT2Eu1",
 
   // Price for creating contracts.
   creationAmount: 3,

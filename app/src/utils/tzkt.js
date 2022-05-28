@@ -69,11 +69,13 @@ export const getContractMetadata = async (addr) => {
   const content = await axios.get(
     `${currentEndpoint}/v1/bigmaps/${metadataBigMapId}/keys?limit=10000`
   );
+  console.log("content", content);
 
   const obj = content.data.find((o) => o.key == "content");
   if (!obj) {
     return false;
   }
+  console.log("Value", bytes2Char(obj.value));
   return bytes2Char(obj.value);
 };
 

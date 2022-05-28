@@ -129,5 +129,10 @@ def test():
 
 sp.add_compilation_target('Factory', CrowdsaleFactory(
     _admin = sp.address("tz1UxnruUqq2demYbAHsHkZ2VV95PV8MXVGq"),
-    _oracle = sp.address("KT1PMQZxQTrFPJn3pEaj9rvGfJA9Hvx7Z1CL")
+
+    # Oracle for hangzhounet.
+    # _oracle = sp.address("KT1PMQZxQTrFPJn3pEaj9rvGfJA9Hvx7Z1CL")
+    
+    # Oracle for Ithacanet.
+    _oracle = sp.address("KT1ENe4jbDE1QVG1euryp23GsAeWuEwJutQX")
 ))

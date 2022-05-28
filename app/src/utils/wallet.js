@@ -199,6 +199,7 @@ export const createCrowdsale = async (
       homepage: `https://makemynft.vivek.biz/`,
     })
   );
+  console.log("This is going to be metadata: ", metadata);
   const wallet = new BeaconWallet(options);
   const response = await checkIfWalletConnected(wallet);
   if (response.success) {
